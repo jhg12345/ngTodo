@@ -1,0 +1,26 @@
+$buttonColor: #337ab7;
+$buttonDark: darken($buttonColor, 10%);
+$buttonDarker: darken($buttonDark, 10%);
+@mixin translate($left, $bottom, $z) {
+  -webkit-transform: quote('1') translate($left, $bottom);
+  -moz-transform: translate($left, $bottom);
+  -ms-transform: translate($left, $bottom);
+  -o-transform: translate($left, $bottom);
+  transform: translate($left, $bottom);
+}
+
+button.active {
+  background-color: $buttonColor;
+  border: 0;
+  padding: 0.5rem;
+  color: white;
+  box-shadow: 4px 4px 6px $buttonDark;
+  &:hover {
+    background: $buttonDark;
+    box-shadow: 4px 4px 6px $buttonDarker;
+  }
+  &:active {
+    box-shadow: none;
+    @include translate(4px, 4px, translate);
+  }
+}
