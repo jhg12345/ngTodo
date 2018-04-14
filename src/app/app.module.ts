@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import {UserService} from './user.service';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -34,6 +35,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     FlexLayoutModule,
     MatToolbarModule,
