@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../user.service';
 import {TodoVO} from '../domain/todo.vo';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ResultVO} from '../domain/result.vo';
 
 @Component({
   selector: 'app-angular',
@@ -69,13 +70,16 @@ export class AngularComponent implements OnInit {
   }
 
 
-  delete(todo: TodoVO) {
-    this.userService.deleteTodo(todo)
-      .subscribe(body => {
-        todoList.deleteTodo(todo);
-        todo.isEdited = false;
-        this.mapTodo.delete(todo.todo_id);
-        console.log(body);
-      });
+  remove(todo) {
+    if(confirm('삭제하시겠습니까?')) {
+      this.userService.removeTodo(todo.todo_id)
+        .subscribe(body => {
+          if (body.result === 0) {
+            this.todoList.splice(this.todoList.indexOf(todo), 1);
+            this.mapTodo.delete(todo.todo_id);
+            console.log(body);
+          }
+        });
+    }
   }
 }

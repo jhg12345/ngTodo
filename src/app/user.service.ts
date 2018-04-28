@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {TodoVO} from './domain/todo.vo';
 import {environment} from '../environments/environment';
+import {ResultVO} from './domain/result.vo';
 
 @Injectable()
 export class UserService {
@@ -36,7 +37,7 @@ export class UserService {
     );
   }
 
-  deleteTodo(params: TodoVO): Observable<TodoVO> {
-    return this.http.delete<TodoVO> (this.SERVER + '/api/todo?todo_id=' + params.todo_id,{headers: this.headers});
+  removeTodo(todo_id) {
+    return this.http.delete<ResultVO>(this.SERVER + `/api/todo?todo_id=${todo_id}`);
   }
 }
