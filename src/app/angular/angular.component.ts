@@ -67,4 +67,15 @@ export class AngularComponent implements OnInit {
         console.log(body);
       });
   }
+
+
+  delete(todo: TodoVO) {
+    this.userService.deleteTodo(todo)
+      .subscribe(body => {
+        todoList.deleteTodo(todo);
+        todo.isEdited = false;
+        this.mapTodo.delete(todo.todo_id);
+        console.log(body);
+      });
+  }
 }
