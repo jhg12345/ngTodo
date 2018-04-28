@@ -19,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {UserService} from './user.service';
 import {FormsModule} from '@angular/forms';
 import { HighlightDirective } from './highlight.directive';
+import { MydatePipe } from './mydate.pipe';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -36,6 +37,7 @@ const routes: Routes = [
     HomeComponent,
     JqueryComponent,
     HighlightDirective,
+    MydatePipe,
     AngularComponent
   ],
   imports: [
