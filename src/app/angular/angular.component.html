@@ -28,15 +28,29 @@
         <div class="th">수정일</div>
         <div class="th">삭제</div>
       </div>
-      <div class="tr" *ngFor="let todo of todoList">
-        <div class="td">{{todo.isFinished?'완료':'미완료'}}</div>
-        <div class="td">{{todo.todo}}</div>
-        <div class="td">{{todo.created}}</div>
-        <div class="td">{{todo.updated}}</div>
-        <div class="td">
-          <button mat-raised-button color="warn">삭제</button>
+      <ng-template ngFor let-todo [ngForOf]="todoList">
+        <div class="tr" [@flyInOut]="'in'" *ngIf="!todo.isEdited">
+          <div class="td">{{todo.isFinished?'완료':'미완료'}}</div>
+          <div class="td">{{todo.todo}}</div>
+          <div class="td">{{todo.created}}</div>
+          <div class="td">{{todo.updated}}</div>
+          <div class="td">
+            <button mat-raised-button color="warn">저장</button>
+            <button mat-raised-button color="warn">취소</button>
+          </div>
         </div>
-      </div>
+
+        <div class="tr" [@flyInOut]="'in'" *ngIf="todo.isEdited">
+          <div class="td">{{todo.isFinished?'완료':'미완료'}}</div>
+          <div class="td">{{todo.todo}}</div>
+          <div class="td">{{todo.created}}</div>
+          <div class="td">{{todo.updated}}</div>
+          <div class="td">
+            <button mat-raised-button color="accent">수정</button>
+            <button mat-raised-button color="warn">삭제</button>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </mat-card-content>
 </mat-card>
