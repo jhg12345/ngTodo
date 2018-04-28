@@ -26,7 +26,7 @@ export class AngularComponent implements OnInit {
       .subscribe(body => {
         // todoList 맨앞에 삽입
         console.log(body);
-        this.todoList.unshift(body[0]);
+        //this.todoList.unshift(body);
       });
   }
 }
