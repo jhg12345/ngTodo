@@ -23,6 +23,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class AngularComponent implements OnInit {
   todoList: TodoVO[] = [];
   newTodo = new TodoVO();
+  mapTodo = new Map<number, TodoVO>();
 
   constructor(private userService: UserService) { }
 
@@ -34,12 +35,25 @@ export class AngularComponent implements OnInit {
       });
   }
 
-  addTodo(param: TodoVO) {
+  addTodo() {
     this.userService.addTodo(this.newTodo)
       .subscribe(body => {
         // todoList 맨앞에 삽입
         console.log(body);
         //this.todoList.unshift(body);
       });
+  }
+
+  modify(todo: TodoVO) {
+    todo.isEdited = true;
+
+    const tempTodo = Object.assign({}, todo);
+    this.mapTodo.set(todo.todo_id, tempTodo);
+  }
+
+  cancel(todo: TodoVO) {
+    const tempTodo = this.mapTodo.get(todo.todo_id);
+    Object.assign(todo, tempTodo);
+    todo.isEdited = false;
   }
 }

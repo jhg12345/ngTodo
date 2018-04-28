@@ -9,7 +9,8 @@ import { JqueryComponent } from './jquery/jquery.component';
 import { AngularComponent } from './angular/angular.component';
 import {RouterModule, Routes} from '@angular/router';
 import {
-  MatButtonModule, MatCardModule, MatFormField, MatFormFieldModule, MatIconModule, MatInput, MatInputModule, MatMenuModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatFormField, MatFormFieldModule, MatIconModule, MatInput, MatInputModule,
+  MatMenuModule,
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -49,6 +50,7 @@ const routes: Routes = [
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
