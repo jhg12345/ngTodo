@@ -4,8 +4,10 @@ import { IndexComponent } from './index/index.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import {RouterModule, Routes} from '@angular/router';
-import {MatExpansionModule, MatToolbarModule} from '@angular/material';
+import {MatCardModule, MatExpansionModule, MatToolbarModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {AdminService} from './admin.service';
+import {UserService} from '../user.service';
 
 const route: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -15,13 +17,19 @@ const route: Routes = [
 ];
 
 @NgModule({
+  declarations: [
+    IndexComponent,
+    HomeComponent,
+    NewsComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(route),
     FlexLayoutModule,
     MatToolbarModule,
     MatExpansionModule,
+    MatCardModule,
   ],
-  declarations: [IndexComponent, HomeComponent, NewsComponent]
+  providers: [AdminService],
 })
 export class AdminModule { }
