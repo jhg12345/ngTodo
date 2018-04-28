@@ -20,11 +20,23 @@ export class UserService {
     return this.http.get<TodoVO[]>(this.SERVER + '/api/todo');
   }
 
-  addTodo(params: TodoVO): Observable<TodoVO[]> {
-    return this.http.post<TodoVO[]>(
+  addTodo(params: TodoVO): Observable<TodoVO> {
+    return this.http.post<TodoVO>(
       this.SERVER + '/api/todo',
       params,
       {headers: this.headers}
     );
+  }
+
+  modifyTodo(params: TodoVO): Observable<TodoVO> {
+    return this.http.put<TodoVO>(
+      this.SERVER + '/api/todo',
+      params,
+      {headers: this.headers}
+    );
+  }
+
+  deleteTodo(params: TodoVO): Observable<TodoVO> {
+    return this.http.delete<TodoVO> (this.SERVER + '/api/todo?todo_id=' + params.todo_id,{headers: this.headers});
   }
 }

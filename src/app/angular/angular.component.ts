@@ -31,20 +31,21 @@ export class AngularComponent implements OnInit {
     this.userService.getTodoList()
       .subscribe(body => {
         this.todoList = body;
+        this.mapTodo.clear();
         console.log(this.todoList);
       });
   }
 
-  addTodo() {
+  addTodo(params: TodoVO) {
     this.userService.addTodo(this.newTodo)
       .subscribe(body => {
         // todoList 맨앞에 삽입
         console.log(body);
-        //this.todoList.unshift(body);
+        this.todoList.unshift(body);
       });
   }
 
-  modify(todo: TodoVO) {
+  restore(todo: TodoVO) {
     todo.isEdited = true;
 
     const tempTodo = Object.assign({}, todo);
@@ -55,5 +56,15 @@ export class AngularComponent implements OnInit {
     const tempTodo = this.mapTodo.get(todo.todo_id);
     Object.assign(todo, tempTodo);
     todo.isEdited = false;
+  }
+
+  modify(todo: TodoVO) {
+    this.userService.modifyTodo(todo)
+      .subscribe(body => {
+        Object.assign(todo, body);
+        todo.isEdited = false;
+        this.mapTodo.delete(todo.todo_id);
+        console.log(body);
+      });
   }
 }

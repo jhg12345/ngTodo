@@ -35,7 +35,7 @@
           <div class="td">{{todo.created}}</div>
           <div class="td">{{todo.updated}}</div>
           <div class="td">
-            <button mat-raised-button color="primary" (click)="modify(todo)">수정</button>
+            <button mat-raised-button color="primary" (click)="restore(todo)">수정</button>
             <button mat-raised-button color="warn" (click)="delete(todo)">삭제</button>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <div class="td">{{todo.created}}</div>
           <div class="td">{{todo.updated}}</div>
           <div class="td">
-            <button mat-raised-button color="primary" (click)="save(todo)">저장</button>
+            <button mat-raised-button color="primary" (click)="modify(todo)">저장</button>
             <button mat-raised-button color="warn" (click)="cancel(todo)">취소</button>
           </div>
         </div>
