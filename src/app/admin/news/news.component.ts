@@ -26,8 +26,13 @@ export class NewsComponent implements OnInit {
       .subscribe(body => {
         console.log(body);
         this.newsList = body.data as NewsVO[];
+        this.page.totalCount = body.total;
         console.log(this.newsList);
       });
   }
 
+  pageChanged(event: any) {
+    console.log(event);
+    this.page.pageIndex = event.pageIndex;
+  }
 }
